@@ -128,7 +128,7 @@ const DIAGNOSTIC_CASES: DiagnosticCase[] = [
     badge: "Samsung KNOX & KG",
     cause: "أجهزة تابعة لشركات أو برامج تقسيط مقفلة من السيرفر بنظام الإدارة المؤسساتية.",
     tool: "TSM Pro Edition 2026",
-    toolLink: "https://www.mediafire.com/file_premium/96ji9a20jlvdz36/TSM_Pro_Edition_Setup%255B2026.10.01%255D.7z/file",
+    toolLink: "https://www.mediafire.com/file/vqiuhtmypiv7gzs/TSM+Pro+Edition+Setup[2026.10.16].7z/file",
     driver: "Samsung USB Driver v3",
     driverLink: "https://www.mediafire.com/file_premium/92yzwgkkvkutye5/SAMSUNG_USB_Driver_for_Mobile_Phones_3.exe/file",
     steps: [

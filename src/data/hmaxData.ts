@@ -9,6 +9,7 @@ export interface ItemData {
   ver?: string;
   desc?: string;
   link?: string;
+  image?: string;
   pass?: string;
   category?: string;
   video?: string;
@@ -54,7 +55,65 @@ export const HMAX_DATA = {
     { id: "tool-4", name: "QCDMA Tool", ver: "Latest", desc: "أداة كوالكوم لبرمجة يمن موبايل", link: "https://mega.nz/folder/fEQVBLab#1cPjBryW2_XPmqjxDoNZ0Q", pass: "—" },
     { id: "tool-5", name: "CDMA Yemen", ver: "Latest", desc: "برمجة يمن موبايل وتفعيل CDMA", link: "https://www.mediafire.com/folder/kz5v059ycm44j/CDMA_YEMEN_TOOL", pass: "—" },
     { id: "tool-6", name: "TSM Tool Pro", ver: "v2.4.1", desc: "TSM Pro Setup للسامسونج وموتورولا", link: "https://www.mediafire.com/file/vqh1h1uhwq9s2xo/TSM_SetupV2.4.1.7z/file", pass: "—" },
-    { id: "tool-7", name: "TSM PRO EDITION", ver: "2026.10.01", desc: "أحدث إصدار — دعم Exynos جديد", link: "https://www.mediafire.com/file_premium/96ji9a20jlvdz36/TSM_Pro_Edition_Setup%255B2026.10.01%255D.7z/file", pass: "—" },
+    {
+      id: "tool-7",
+      name: "TSM PRO EDITION",
+      ver: "2026.10.16",
+      desc: `TSM PRO EDITION 2026.10.16 | Update
+
+Added Nothing 4B Support [EDL Mode]
+Added Unisoc ADL Mode [Unknown USB Mode] [ZTE Devices]
+• Remove FRP
+• Factory reset
+Tested ZTE models:
+• ZTE nubia Neo 2 5G [Z2352N]
+• ZTE Blade A56 [Z2473]
+• ZTE nubia V80 Pro [Z2576]
+• ZTE Blade A36 [Z2472]
+• ZTE nubia Neo 3 GT 5G [Z2465N]
+• ZTE Blade A55 [Z2450]
+• ZTE Blade A75 4G [Z2359]
+Note: Method covers ZTE devices.
+
+Added New Bits Samsung 2026 [EDL Mode]
+• Remove FRP
+• Factory Reset
+• Read/Write Firmware/Dump
+Supported Samsung models:
+• Galaxy A23 5G [SM-A236B bitH]
+• Galaxy A23 5G [SM-A236E bitH]
+• Galaxy A23 5G [SM-A236M bitH]
+• Galaxy F14 4G [SM-E145F bitD]
+• Galaxy Z Flip4 [SM-F721N bit8]
+• Galaxy Z Fold3 5G [SM-F926N bitE]
+• Galaxy Z Fold6 [SM-F956N bit4]
+• Galaxy S21 FE 5G [SM-G990B2 bitK]
+• Galaxy Tab A9+ 5G [SM-X216C bitC]
+• Galaxy Tab A9+ 5G [SM-X216N bitD]
+
+Added More Support:
+• TCL 9185W
+• TCL T513Z
+• TCL 30+ [T676K]
+• ZTE NUBIA NEO 5G [8150N]
+• ZTE BLADE A112 [P635A60]
+• REDMAGIC 11S Pro [NX809J]
+• REDMAGIC Nova Gaming Table [NP03J]
+• honor play 20a
+• lenovo Tab M11 [TB330XU]
+• OUKITEL C68
+
+Improved Fastboot Flasher Moto/Xiaomi
+
+Fixed Bugs:
+• Preloader Mode: Redmi A3 [blue], Poco C61 [blue], Poco C50 [blue]
+• Crash with Remove FRP MTP OS16
+• Change CSC
+• Select Moto Maps flashfile*/servicefile*`,
+      link: "https://www.mediafire.com/file/vqiuhtmypiv7gzs/TSM+Pro+Edition+Setup[2026.10.16].7z/file",
+      image: "/images/tsmtool.jpg",
+      pass: "—",
+    },
     { id: "tool-8", name: "DFT Pro", ver: "v8.0.0", desc: "Dongle For Tools الشهير لشياومي وهواوي", link: "https://www.mediafire.com/file/m4ssk83p5wr5mxa/DFTPRO_v8.0.0.exe/file", pass: "—" },
     { id: "tool-9", name: "Sigma Plus", ver: "v1.01.13", desc: "SigmaKey — هواوي وميدياتك وكوالكوم", link: "https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.13.exe", pass: "—" },
     { id: "tool-10", name: "Sigma Kirin", ver: "Kirin Files", desc: "ملفات تفليش ودعم معالجات Kirin", link: "https://mega.nz/file/HpgniKDT#OjCTB2_Ki_TxcKs7mCBNgd08eDVa1jPwOsU1aci0KXU", pass: "—" },

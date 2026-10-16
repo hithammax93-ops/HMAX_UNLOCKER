@@ -79,6 +79,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
     { id: 'codes', title: '🔑 أكواد المهندس والدايلر', count: 'أكواد سرية', desc: 'أكواد سرية لاختبار الهواتف والشاشات وتفعيل الـ Diag Port وسامسونج', tab: 'tech_utils', subTab: 'codes' },
     { id: 'apn', title: '📡 نقاط الوصول APN', count: 'تفعيل 4G/LTE', desc: 'إعدادات APN ليمن موبايل، يو YOU، سبأفون والشبكات الدولية', tab: 'tech_utils', subTab: 'apn' },
     { id: 'testpoints', title: '⚡ نقاط التيست بوينت', count: 'EDL / BROM', desc: 'مخططات نقاط توصيل الهواتف لإدخال وضع 9008 و BROM لمعالجات MTK/QCOM', tab: 'tech_utils', subTab: 'testpoints' },
+    { id: 'compatibility', title: '🛡️ فاحص توافق الطراز', count: 'رقم موديل دقيق', desc: 'ابحث عن موارد الفهرس باستخدام الشركة واسم الجهاز ورقم الطراز المحدد؛ النتائج مرجع وليست ضمان توافق.', tab: 'tech_utils', subTab: 'compatibility', feat: true },
+    { id: 'diagnostics', title: '🧭 مساعد التشخيص', count: '3 مسارات أولية', desc: 'خطوات آمنة لتعليق الشعار ومشكلات الشبكة وفشل التحديث، مع تنبيهات قبل الإجراءات الإتلافية.', tab: 'tech_utils', subTab: 'diagnostics' },
+    { id: 'device_log', title: '🗒️ دفتر الجهاز المحلي', count: 'بدون حساب', desc: 'احفظ ملاحظات الأجهزة وعمليات الصيانة محليًا على هذا الجهاز دون رفعها إلى خادم.', tab: 'tech_utils', subTab: 'device_log' },
     { id: 'tracker', title: '📋 سجل الصيانة وإيصالات الزبائن', count: 'طباعة إيصال', desc: 'إدارة أجهزة الصيانة بالمحل، طباعة إيصالات برقم وسيريال، ورسائل واتساب', tab: 'tech_utils', subTab: 'tracker' },
   ];
 
@@ -177,6 +180,19 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </div>
         </div>
       </div>
+
+      <section className="rounded-2xl border border-[#00b4ff]/20 bg-[#00b4ff]/[0.04] p-4">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h3 className="text-xs font-black text-white">ما الجديد في Android 1.1.0</h3>
+          <span className="rounded-lg bg-[#00b4ff]/10 px-2 py-1 text-[10px] font-bold text-[#67e8f9]">سجل التغييرات</span>
+        </div>
+        <ul className="mt-2 grid gap-1.5 text-[11px] leading-relaxed text-slate-300 sm:grid-cols-2">
+          <li>• فلاتر بحث حسب النوع وسجل استخدام محفوظ محليًا واقتراحات أخطاء كتابة قريبة.</li>
+          <li>• فاحص رقم الطراز ومساعد تشخيص أولي ودفتر صيانة محلي دون حساب.</li>
+          <li>• قوالب بلاغ وطلب موديل تملأ سياق القسم والعنصر قبل المشاركة.</li>
+          <li>• تكبير خط اختياري وإمكانية تكبير الشاشة بإيماءة النظام.</li>
+        </ul>
+      </section>
 
       {/* Master Password Bar */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-slate-900/80 border border-slate-800 shadow-sm">

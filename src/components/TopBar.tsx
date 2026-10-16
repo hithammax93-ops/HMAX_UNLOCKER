@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Download, ShieldCheck, Copy, Check, Smartphone, Send, Star } from 'lucide-react';
+import { Search, Download, ShieldCheck, Copy, Check, Smartphone, Send, Star, Type } from 'lucide-react';
 import { MASTER_PASS } from '../data/hmaxData';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 import { NavTab } from './BottomNav';
@@ -10,6 +10,8 @@ interface TopBarProps {
   onSearchClick: () => void;
   onCopyToast: (msg: string) => void;
   favoritesCount?: number;
+  largeText?: boolean;
+  onToggleLargeText?: () => void;
 }
 
 export const TopBar: React.FC<TopBarProps> = ({
@@ -18,6 +20,8 @@ export const TopBar: React.FC<TopBarProps> = ({
   onSearchClick,
   onCopyToast,
   favoritesCount = 0,
+  largeText = false,
+  onToggleLargeText,
 }) => {
   const { isInstallable, isInstalled, isIOS, install } = usePWAInstall();
   const [copiedPass, setCopiedPass] = React.useState(false);
@@ -94,6 +98,16 @@ export const TopBar: React.FC<TopBarProps> = ({
             <Search className="w-3.5 h-3.5 text-[#00b4ff]" />
             <span className="hidden sm:inline">بحث...</span>
             <kbd className="hidden md:inline px-1 py-0.2 rounded bg-slate-800 text-[10px] text-slate-400 font-mono">/</kbd>
+          </button>
+
+          <button
+            onClick={onToggleLargeText}
+            aria-label={largeText ? 'إيقاف تكبير الخط' : 'تكبير الخط'}
+            aria-pressed={largeText}
+            title={largeText ? 'إيقاف تكبير الخط' : 'تكبير الخط'}
+            className={`rounded-xl border p-2 transition ${largeText ? 'border-[#00b4ff]/50 bg-[#00b4ff]/15 text-[#67e8f9]' : 'border-slate-800 bg-slate-900 text-slate-400 hover:text-white'}`}
+          >
+            <Type className="h-4 w-4" />
           </button>
 
           {/* Favorites Button (Visible on mobile/tablet) */}

@@ -51,6 +51,15 @@ export const ItemCard: React.FC<ItemCardProps> = ({
   return (
     <div className="group relative rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-900/50 border border-slate-800/80 hover:border-[#00b4ff]/40 p-4 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 shadow-sm hover:shadow-[0_8px_24px_rgba(0,180,255,0.08)]">
       <div>
+        {item.image && (
+          <img
+            src={item.image}
+            alt={`${item.name} preview`}
+            loading="lazy"
+            onError={(event) => { event.currentTarget.hidden = true; }}
+            className="w-full aspect-video object-cover rounded-xl border border-slate-700/60 mb-3"
+          />
+        )}
         {/* Header with Title and Favorite Toggle */}
         <div className="flex items-start justify-between gap-2 mb-2">
           <div className="flex-1 min-w-0">
@@ -102,7 +111,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
 
         {/* Description */}
         {item.desc && (
-          <p className="text-xs text-slate-400/90 leading-relaxed mb-3">
+          <p className="text-xs text-slate-400/90 leading-relaxed mb-3 whitespace-pre-line">
             {item.desc}
           </p>
         )}

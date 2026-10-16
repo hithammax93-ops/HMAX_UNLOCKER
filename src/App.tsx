@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TopBar } from './components/TopBar';
 import { BottomNav, NavTab } from './components/BottomNav';
 import { HomeView } from './components/HomeView';
@@ -22,6 +22,10 @@ export default function App() {
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [largeText, setLargeText] = useState(() => {
+    try { return localStorage.getItem('hmax_large_text_v1') === 'true'; }
+    catch { return false; }
+  });
 
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
 
@@ -63,6 +67,12 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  useEffect(() => {
+    document.documentElement.dataset.textScale = largeText ? 'large' : 'normal';
+    try { localStorage.setItem('hmax_large_text_v1', String(largeText)); }
+    catch { /* Preference persistence is optional. */ }
+  }, [largeText]);
+
   return (
     <div className="min-h-screen bg-[#0a0e1a] text-slate-100 flex flex-col selection:bg-[#00b4ff]/30 selection:text-white pb-20 sm:pb-12">
       {/* Top Application Bar */}
@@ -72,6 +82,8 @@ export default function App() {
         onSearchClick={() => setIsSearchOpen(true)}
         onCopyToast={showToast}
         favoritesCount={favorites.length}
+        largeText={largeText}
+        onToggleLargeText={() => setLargeText((value) => !value)}
       />
 
       {/* Main Container */}

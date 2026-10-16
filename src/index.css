@@ -19,6 +19,10 @@
   }
 }
 
+html[data-text-scale="large"] {
+  font-size: 18px;
+}
+
 /* Custom scrollbar for mobile & desktop */
 ::-webkit-scrollbar {
   width: 5px;

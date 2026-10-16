@@ -24,7 +24,10 @@ import {
   ChevronDown,
   Download,
   Info,
-  Layers
+  Layers,
+  ShieldCheck,
+  BookOpenCheck,
+  Database
 } from 'lucide-react';
 import {
   ADB_FASTBOOT_COMMANDS,
@@ -51,6 +54,7 @@ import { FlashErrorDictionary } from './FlashErrorDictionary';
 import { WebUsbPortChecker } from './WebUsbPortChecker';
 import { GsmPricingCalculator } from './GsmPricingCalculator';
 import { Printer, Usb, DollarSign, AlertOctagon, Play } from 'lucide-react';
+import { TechnicianDesk } from './TechnicianDesk';
 
 export type TechTab =
   | 'commands'
@@ -66,7 +70,10 @@ export type TechTab =
   | 'calc'
   | 'apn'
   | 'testpoints'
-  | 'tracker';
+  | 'tracker'
+  | 'compatibility'
+  | 'diagnostics'
+  | 'device_log';
 
 export interface TechUtilsViewProps {
   onCopyToast: (msg: string) => void;
@@ -327,6 +334,9 @@ export const TechUtilsView: React.FC<TechUtilsViewProps> = ({ onCopyToast, initi
     { id: 'calc', label: 'حاسبة السيريال & CSC', icon: Calculator, count: 'Tool' },
     { id: 'apn', label: 'نقاط وصول APN', icon: Radio, count: APN_PROFILES.length },
     { id: 'testpoints', label: 'تيست بوينت EDL/BROM', icon: Cpu, count: TESTPOINT_GUIDES.length },
+    { id: 'compatibility', label: 'فاحص توافق الطراز', icon: ShieldCheck, count: 'رقم دقيق', badge: 'تحقق' },
+    { id: 'diagnostics', label: 'مساعد التشخيص', icon: BookOpenCheck, count: '3 أعطال', badge: 'دليل' },
+    { id: 'device_log', label: 'ملاحظات الأجهزة المحلية', icon: Database, count: 'محلي فقط' },
     { id: 'tracker', label: 'دفتر الصيانة وطباعة الوصل', icon: ClipboardList, count: tickets.length }
   ];
 
@@ -421,7 +431,7 @@ export const TechUtilsView: React.FC<TechUtilsViewProps> = ({ onCopyToast, initi
       </div>
 
       {/* Global Search Bar within the selected tool tab */}
-      {activeTab !== 'ranks' && activeTab !== 'calc' && activeTab !== 'tracker' && (
+      {activeTab !== 'ranks' && activeTab !== 'calc' && activeTab !== 'tracker' && activeTab !== 'compatibility' && activeTab !== 'diagnostics' && activeTab !== 'device_log' && (
         <div className="relative">
           <Search className="w-4 h-4 absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
@@ -506,6 +516,10 @@ export const TechUtilsView: React.FC<TechUtilsViewProps> = ({ onCopyToast, initi
           </div>
         </div>
       )}
+
+      {activeTab === 'compatibility' && <TechnicianDesk mode="compatibility" onCopyToast={onCopyToast} />}
+      {activeTab === 'diagnostics' && <TechnicianDesk mode="diagnostics" onCopyToast={onCopyToast} />}
+      {activeTab === 'device_log' && <TechnicianDesk mode="device_log" onCopyToast={onCopyToast} />}
 
       {/* ======================= TAB: SAMSUNG BINARY / BIT CHECKER ======================= */}
       {activeTab === 'samsung_bin' && (
