@@ -3,6 +3,7 @@ import { ArrowRight, Search, ExternalLink, HardDrive, Shield, Wrench, Cpu, Spark
 import { HMAX_DATA, MASTER_PASS, ItemData, DumpBrand } from '../data/hmaxData';
 import { TECNO_MODELS, TecnoModelItem } from '../data/tecnoModels';
 import { DUMP_TOOLS_CATALOG, DumpToolInfo } from '../data/dumpTools';
+import { withDumpPresentation } from '../data/dumpPresentation';
 import { ItemCard } from './ItemCard';
 import { DumpModal } from './DumpModal';
 
@@ -319,21 +320,25 @@ export const DumpView: React.FC<DumpViewProps> = ({
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {currentCards.map((card) => (
-                    <div
-                      key={card.id || card.name}
-                      onClick={() => setInspectItem(card)}
-                      className="cursor-pointer"
-                    >
-                      <ItemCard
-                        item={card}
-                        isFav={isFav(card)}
-                        onToggleFav={onToggleFav}
-                        onCopyToast={onCopyToast}
-                        badgeLabel={currentBrand?.name}
-                      />
-                    </div>
-                  ))}
+                  {currentCards.map((card) => {
+                    const displayCard = withDumpPresentation(card, currentBrand?.id ?? selectedBrand);
+                    return (
+                      <div
+                        key={card.id || card.name}
+                        onClick={() => setInspectItem(displayCard)}
+                        className="cursor-pointer"
+                      >
+                        <ItemCard
+                          item={displayCard}
+                          isFav={isFav(card)}
+                          onToggleFav={onToggleFav}
+                          onCopyToast={onCopyToast}
+                          badgeLabel={currentBrand?.name}
+                          showMissingImageNotice
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -446,21 +451,25 @@ export const DumpView: React.FC<DumpViewProps> = ({
 
               {/* Tool Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {selectedTool.items.map((card) => (
-                  <div
-                    key={card.id || card.name}
-                    onClick={() => setInspectItem(card)}
-                    className="cursor-pointer"
-                  >
-                    <ItemCard
-                      item={card}
-                      isFav={isFav(card)}
-                      onToggleFav={onToggleFav}
-                      onCopyToast={onCopyToast}
-                      badgeLabel={selectedTool.name}
-                    />
-                  </div>
-                ))}
+                {selectedTool.items.map((card) => {
+                  const displayCard = withDumpPresentation(card, selectedTool.name);
+                  return (
+                    <div
+                      key={card.id || card.name}
+                      onClick={() => setInspectItem(displayCard)}
+                      className="cursor-pointer"
+                    >
+                      <ItemCard
+                        item={displayCard}
+                        isFav={isFav(card)}
+                        onToggleFav={onToggleFav}
+                        onCopyToast={onCopyToast}
+                        badgeLabel={selectedTool.name}
+                        showMissingImageNotice
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}

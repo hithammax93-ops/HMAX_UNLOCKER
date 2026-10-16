@@ -87,6 +87,19 @@ export const DumpModal: React.FC<DumpModalProps> = ({
 
         {/* Modal Body */}
         <div className="space-y-4 py-4 text-xs">
+          {item.image ? (
+            <img
+              src={item.image}
+              alt={`${item.name} DUMP preview`}
+              className="w-full max-h-56 aspect-video object-cover rounded-xl border border-slate-700/60"
+            />
+          ) : (
+            <div className="rounded-lg border border-dashed border-slate-700 px-3 py-3 flex items-center gap-2 text-xs text-slate-400">
+              <HardDrive className="w-4 h-4 text-slate-500 shrink-0" />
+              <span>الصورة الأصلية المطابقة غير متوفرة ضمن ملفات المشروع.</span>
+            </div>
+          )}
+
           {/* Quick Info Grid */}
           <div className="grid grid-cols-2 gap-2">
             <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80">

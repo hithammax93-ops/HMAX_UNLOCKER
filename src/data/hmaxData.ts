@@ -194,7 +194,7 @@ Fixed Bugs:
     { id: "kxd", name: "KXD A07", count: 2, color: "#8b5cf6", icon: "📱" },
     { id: "hmd", name: "HMD", count: 1, color: "#06b6d4", icon: "📱" },
     { id: "benco", name: "BENCO", count: 2, color: "#22c55e", icon: "📱" },
-    { id: "honor", name: "HONOR", count: 4, color: "#7c3aed", icon: "🔥" },
+    { id: "honor", name: "HONOR", count: 5, color: "#7c3aed", icon: "🔥" },
     { id: "hisorl", name: "HISORL", count: 1, color: "#f97316", icon: "📱" },
     { id: "blackview", name: "BLACKVIEW", count: 1, color: "#0891b2", icon: "📱" },
     { id: "huawei", name: "HUAWEI & HONOR", count: 5, color: "#dc2626", icon: "🗄️" },
@@ -224,7 +224,8 @@ Fixed Bugs:
       { id: "hnr-1", name: "HONOR 70 FNE-NX9 - Official", ver: "FNE-N29_def_meafnaf", desc: "Official FREE روم كامل", link: "https://drive.google.com/file/d/1sPDlg3-8j4OiL12Zh1DZNHF4Y5mHNjJd/view" },
       { id: "hnr-2", name: "X7a RKY-LX2 2GB [F64]", ver: "2GB Dump + NV", desc: "سحب Hossam Khairy مع ملفات الشبكة", link: "https://drive.google.com/file/d/1TiQ4y7sUK6cNxaUVT2tEcjgC3vjdlEr0/view" },
       { id: "hnr-3", name: "X9c FULL DUMP [Flash64]", ver: "MagicOS 8.0", desc: "أندرويد 14 مسحوب بوكس فلاش 64", link: "https://drive.google.com/file/d/1Kd5cp_IQeTI_6fzz0HmZVgHKT-DSZfL0/view" },
-      { id: "hnr-4", name: "X7b 5G CLK-NX2 FRP [YMTC]", ver: "MagicOS 9.0", desc: "معالج Dimensity 6020 حماية حديثة", link: "https://www.mediafire.com/file/oqlqu315m5kutkh/" }
+      { id: "hnr-4", name: "X7b 5G CLK-NX2 FRP [YMTC]", ver: "MagicOS 9.0", desc: "معالج Dimensity 6020 حماية حديثة", link: "https://www.mediafire.com/file/oqlqu315m5kutkh/" },
+      { id: "hnr-5", name: "Honor 50 Lite — NEW REGION C185", ver: "NTN-L22 | C185 · Unlock Tool", desc: "توجيه C185 مختلف ومتاح للجميع. دامب مسحوب بأداة Unlock Tool وجاهز للتفليش بأي أداة تدعم هذا النوع. هدية مجانية للفنيين · Google Drive · كلمة المرور: MobiFirmware.VIP", link: "https://drive.google.com/file/d/1V977zxhIp-2bDbiaDWD07wTrKyRiU11Z/view", image: "/images/honor_50_lite_ntn_l22_c185_new.jpg" }
     ],
     hmd: [
       { id: "hmd-1", name: "HMD AURA TA-1631 (2 ROMs)", ver: "rck_116A + rck_1100", desc: "Official Stock ROMs أصلية", link: "https://drive.google.com/file/d/1hp-B3jh0q0tTGNYLxq8R4yWy4Y0W_3tw/view" }
@@ -288,7 +289,7 @@ Fixed Bugs:
       { id: "sam-3", name: "A07 4G SM-A075F Android 16", ver: "A075FXXS6CZF6", desc: "UnlockTool أحدث حماية", link: "https://drive.google.com/file/d/1YCwzU2B9XZlQK-A-zDNhbLpWpWxwFnAP/view" },
       { id: "sam-4", name: "X216b XXUD XML", ver: "Abdullah Ghanem", desc: "أحدث حماية مسحوبة بصيغة XML", link: "https://drive.usercontent.google.com/open?id=17G7p16ZkVWq_qllLn_of3zg3L-L_83wh" },
       { id: "sam-5", name: "A12 SM-A125F", ver: "A125FXXS6CXJ1", desc: "Easy JTAG 1.5GB لإصلاح الذاكرة", link: "https://drive.google.com/file/d/1RegTQJUux_RdrozEtt9eFR2bmECEnFq3/view" },
-      { id: "sam-6", name: "A25 5G SM-A256E", ver: "A256EXXS8CYG3", desc: "F64 ULTRA 4.5GB إكسينوس حديث", link: "https://drive.google.com/file/d/1Tw19y4kZPm8mHaO0raheL4nIfp3_HUv2/view" },
+      { id: "sam-6", name: "A25 5G SM-A256E", ver: "A256EXXS8CYG3", desc: "128GB UFS · دامب مسحوب بواسطة F64 ULTRA · الحجم 4.5GB · ملف RAR · Google Drive · كلمة المرور: MobiFirmware.VIP", link: "https://drive.google.com/file/d/1Tw19y4kZPm8mHaO0raheL4nIfp3_HUv2/view", image: "/images/samsung_a25_a256e.webp" },
       { id: "sam-7", name: "Tab A9 SM-X110", ver: "X110XXS6CYI3", desc: "سحب أداة أنلوك تول كامل", link: "https://drive.google.com/file/d/199DEolDruK6iP3oh6iGJ9XkOJWJsDqil/view" }
     ],
     xiaomi: [

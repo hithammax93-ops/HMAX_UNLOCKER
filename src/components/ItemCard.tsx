@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, Copy, Star, ExternalLink, Key, Check } from 'lucide-react';
+import { Download, Copy, Star, ExternalLink, Key, Check, HardDrive } from 'lucide-react';
 import { ItemData } from '../data/hmaxData';
 
 interface ItemCardProps {
@@ -8,6 +8,7 @@ interface ItemCardProps {
   onToggleFav?: (item: ItemData) => void;
   onCopyToast: (msg: string) => void;
   badgeLabel?: string;
+  showMissingImageNotice?: boolean;
 }
 
 export const ItemCard: React.FC<ItemCardProps> = ({
@@ -16,6 +17,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
   onToggleFav,
   onCopyToast,
   badgeLabel,
+  showMissingImageNotice = false,
 }) => {
   const [copiedLink, setCopiedLink] = React.useState(false);
   const [copiedPass, setCopiedPass] = React.useState(false);
@@ -59,6 +61,12 @@ export const ItemCard: React.FC<ItemCardProps> = ({
             onError={(event) => { event.currentTarget.hidden = true; }}
             className="w-full aspect-video object-cover rounded-xl border border-slate-700/60 mb-3"
           />
+        )}
+        {!item.image && showMissingImageNotice && (
+          <div className="mb-3 rounded-lg border border-dashed border-slate-700 px-3 py-2 flex items-center gap-2 text-[10px] text-slate-400">
+            <HardDrive className="w-4 h-4 text-slate-500 shrink-0" />
+            <span>الصورة الأصلية المطابقة غير متوفرة ضمن ملفات المشروع</span>
+          </div>
         )}
         {/* Header with Title and Favorite Toggle */}
         <div className="flex items-start justify-between gap-2 mb-2">
