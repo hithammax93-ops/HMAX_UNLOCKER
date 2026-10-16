@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Gift, Crown, Bot, Headset, FolderGit2, Wrench } from 'lucide-react';
+import { Sparkles, Gift, Crown, Bot, Headset, FolderGit2, Wrench, Send, MessageCircle, ExternalLink } from 'lucide-react';
 import { HMAX_DATA, ItemData } from '../data/hmaxData';
 import { ItemCard } from './ItemCard';
 
@@ -30,6 +30,38 @@ export const OffersView: React.FC<OffersViewProps> = ({
 
   return (
     <div className="space-y-4">
+      {/* Direct VIP & Support Contact Banner */}
+      <div className="p-4 rounded-2xl bg-gradient-to-r from-slate-900 via-blue-950/40 to-slate-900 border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+        <div>
+          <span className="text-xs font-bold text-[#00b4ff] block mb-0.5">
+            خدمات السيرفرات والاشتراكات الفورية 24/7
+          </span>
+          <p className="text-xs text-slate-300">
+            تفعيل فوري لجميع البوكسات، شحن أرصدة، وسحب أي فلاشة أو ملف من سبورت حلب تك بـ 3 دولار فقط.
+          </p>
+        </div>
+        <div className="flex items-center gap-2 shrink-0 flex-wrap">
+          <a
+            href="https://t.me/hithamMax"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-8 px-3 rounded-lg bg-[#00b4ff] hover:bg-[#67e8f9] text-black font-black text-xs flex items-center gap-1.5 transition shadow-sm"
+          >
+            <Send className="w-3 h-3 fill-black" />
+            <span>طلب عبر تليجرام</span>
+          </a>
+          <a
+            href="https://wa.me/967772773388"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-8 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition"
+          >
+            <MessageCircle className="w-3.5 h-3.5" />
+            <span>واتساب</span>
+          </a>
+        </div>
+      </div>
+
       {/* Category Chips with Horizontal Scroll */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none no-scrollbar">
         {categories.map((cat) => {

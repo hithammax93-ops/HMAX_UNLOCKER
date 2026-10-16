@@ -1,3 +1,6 @@
+import { TECNO_MODELS } from './tecnoModels';
+import { LT_PHONES_CATALOG } from './ltPhonesData';
+
 export const MASTER_PASS = "MobiFirmware.VIP";
 
 export interface ItemData {
@@ -57,7 +60,11 @@ export const HMAX_DATA = {
     { id: "tool-10", name: "Sigma Kirin", ver: "Kirin Files", desc: "ملفات تفليش ودعم معالجات Kirin", link: "https://mega.nz/file/HpgniKDT#OjCTB2_Ki_TxcKs7mCBNgd08eDVa1jPwOsU1aci0KXU", pass: "—" },
     { id: "tool-11", name: "Sigma Exynos", ver: "Exynos Files", desc: "ملفات تفليش ودعم Exynos", link: "https://www.mediafire.com/file/fwqvfmq5om67t69/exynos.rar/file", pass: "—" },
     { id: "tool-12", name: "UnlockTool", ver: "Latest", desc: "الأشهر عالمياً لفك الشفرات وتخطي FRP", link: "https://file.unlocktool.net/", pass: "—" },
-    { id: "tool-13", name: "AndroidUtility", ver: "v200", desc: "AUM — حلول الطوارئ والبوتلودر", link: "https://www.mediafire.com/file/dp73po1rf9x4rgz/AndroidUtility.v200.7z/file", pass: "—" }
+    { id: "tool-13", name: "AndroidUtility", ver: "v200", desc: "AUM — حلول الطوارئ والبوتلودر", link: "https://www.mediafire.com/file/dp73po1rf9x4rgz/AndroidUtility.v200.7z/file", pass: "—" },
+    { id: "tool-14", name: "MaxTech Server VIP", ver: "v2.0 PRO", desc: "تعريب سامسونج أندرويد 15 و16 وتفعيل VoLTE وإظهار 4G/5G هدية عاهد وبشير وهيثم ماكس", link: "https://t.me/haithamMax1", pass: "—" },
+    { id: "tool-15", name: "MobilEdit Forensic / Bypass", ver: "Pro Bypass", desc: "تجاوز حماية FRP وKG Lock لمعالجات Exynos عبر وضع الشريحة", link: "https://www.mobiledit.com/", pass: "—" },
+    { id: "tool-16", name: "MobiMover Pro", ver: "Full Transfer", desc: "نقل الرسائل والبيانات بين iPhone و Android والعكس", link: "https://www.easeus.com/phone-transfer/mobimover.html", pass: "—" },
+    { id: "tool-17", name: "iTunes Paid Extractor", ver: "App Suite", desc: "تنزيل وتثبيت تطبيقات وألعاب الآيفون بدون متجر رسمي", link: "https://t.me/hithamMax", pass: "—" }
   ],
 
   drivers: [
@@ -141,6 +148,7 @@ export const HMAX_DATA = {
     { id: "samsung", name: "SAMSUNG SCATTER", count: 6, color: "#1428a0", icon: "📁" },
     { id: "xiaomi", name: "XIAOMI / REDMI / POCO", count: 8, color: "#ff6900", icon: "📱" },
     { id: "tecno", name: "TECNO (141)", count: 141, color: "#2563eb", icon: "📱" },
+    { id: "lt", name: "LT MOBILE (9)", count: 9, color: "#10b981", icon: "📱" },
     { id: "vivo", name: "VIVO", count: 15, color: "#00b4ff", icon: "📱" },
     { id: "wiko", name: "WIKO", count: 1, color: "#ec4899", icon: "📱" },
     { id: "villaon", name: "VILLAON", count: 1, color: "#a855f7", icon: "📱" },
@@ -307,9 +315,8 @@ export const HMAX_DATA = {
       { id: "kxd-1", name: "KXD A07 Android 13", ver: "A07_KXD_A13_V1.263", desc: "Pandora 3GB", link: "https://drive.google.com/file/d/1SqGxl0jvG9OYeE-A0zXnJusk2kTS7xGB/view" },
       { id: "kxd-2", name: "KXD A07 Android 12", ver: "A07_KXD_V1.03", desc: "Pandora 2.2GB", link: "https://drive.google.com/file/d/1hOfF0HqTxCH0NclxiK2eJsg4uS7XPVTb/view" }
     ],
-    tecno: [
-      { id: "tec-1", name: "Tecno Spark 40 Pro KM6", ver: "Android 15 AMT 9.5GB", desc: "Use Camon 40 Pro in AMT", link: "https://drive.google.com/file/d/1VGTT7qXGlO7ZxOqMbjG77-oUcTjBwD0i/view" }
-    ]
+    lt: LT_PHONES_CATALOG,
+    tecno: TECNO_MODELS
   } as Record<string, ItemData[]>,
 
   halabtech: [
@@ -460,6 +467,25 @@ export const HMAX_DATA = {
         ],
         codeSnippet: "adb shell am start -n com.samsung.android.dialer/.DialerActivity",
         conclusionNote: "مجرب وناجح على A13 SM-A135U و XCover Pro SM-G715U"
+      },
+      {
+        id: "exynos_all_models_gift",
+        title: "🎁 FRP & KG SAMSUNG All Model EXYNOS — الطريقة المجانية المعتمدة",
+        tag: "Samsung Exynos أندرويد 14/15/16 وحمايات 2025/2026",
+        problem: "تخطي حماية حساب جوجل FRP و KG Locked لجميع هواتف سامسونج بمعالجات إكسينوس بدون سيرفرات مدفوعة.",
+        solutionIntro: "الخطوات المعتمدة خطوة بخطوة عبر برنامج MobilEdit:",
+        steps: [
+          { num: 1, text: "افتح برنامج MobilEdit على جهاز الكمبيوتر." },
+          { num: 2, text: "اضغط على (بدء Start)." },
+          { num: 3, text: "اختر خيار (التجاوز الأمني Security Bypass)." },
+          { num: 4, text: "اختر (حسب الشريحة By Chipset)." },
+          { num: 5, text: "اختر نوع معالج Exynos وفق موديل الجهاز المستهدف." },
+          { num: 6, text: "اضغط بدء وقم بتوصيل الهاتف وهو في وضع الداونلود Download Mode." },
+          { num: 7, text: "انتظر حتى يُعيد الهاتف التشغيل تلقائياً وتظهر رسالة شاشة الاسترداد." },
+          { num: 8, text: "أغلق MobilEdit واستخدم أي برنامج يدعم ADB FRP (TSM Tool أو UnlockTool أو CDMA Yemen)." },
+          { num: 9, text: "فعّل خيار المطور وانتظر اكتمال التخطي الفوري وتجاوز شاشة الترحيب." }
+        ],
+        conclusionNote: "البرامج المجربة: TSM TOOL Pro, CDMA Yemen Tool Pro, UnlockTool — إهداء مجاني لكل الفنيين من هيثم ماكس."
       }
     ],
 

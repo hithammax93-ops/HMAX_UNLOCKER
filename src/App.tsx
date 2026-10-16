@@ -7,6 +7,7 @@ import { ToolsView } from './components/ToolsView';
 import { SolutionsView } from './components/SolutionsView';
 import { OffersView } from './components/OffersView';
 import { FavoritesView } from './components/FavoritesView';
+import { TechUtilsView } from './components/TechUtilsView';
 import { SearchOverlay } from './components/SearchOverlay';
 import { useFavorites } from './hooks/useFavorites';
 import { ItemData } from './data/hmaxData';
@@ -36,8 +37,11 @@ export default function App() {
     <div className="min-h-screen bg-[#0a0e1a] text-slate-100 flex flex-col selection:bg-[#00b4ff]/30 selection:text-white pb-20 sm:pb-12">
       {/* Top Application Bar */}
       <TopBar
+        activeTab={activeTab}
+        onSelectTab={(tab) => setActiveTab(tab)}
         onSearchClick={() => setIsSearchOpen(true)}
         onCopyToast={showToast}
+        favoritesCount={favorites.length}
       />
 
       {/* Main Container */}
@@ -47,7 +51,8 @@ export default function App() {
           {[
             { id: 'home', label: '⚡ الرئيسية' },
             { id: 'dump', label: '🗄️ فلاشات DUMP' },
-            { id: 'tools', label: '🧰 الأدوات والتعاريف' },
+            { id: 'tech_utils', label: '🛠️ أدوات الفني' },
+            { id: 'tools', label: '🧰 البرامج والتعاريف' },
             { id: 'solutions', label: '💡 الحلول والثغرات' },
             { id: 'offers', label: '🔥 العروض والاشتراكات' },
             { id: 'favorites', label: `⭐ المفضلة (${favorites.length})` },
@@ -80,6 +85,10 @@ export default function App() {
             isFav={isFavorite}
             onToggleFav={toggleFavorite}
           />
+        )}
+
+        {activeTab === 'tech_utils' && (
+          <TechUtilsView onCopyToast={showToast} />
         )}
 
         {activeTab === 'tools' && (

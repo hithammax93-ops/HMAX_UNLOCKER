@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Search, X, Download, Copy, Star, ExternalLink } from 'lucide-react';
 import { HMAX_DATA, ItemData } from '../data/hmaxData';
+import { DUMP_TOOLS_CATALOG } from '../data/dumpTools';
+import { ADB_FASTBOOT_COMMANDS, SECRET_DIAL_CODES, APN_PROFILES, TESTPOINT_GUIDES } from '../data/technicianToolsData';
+import { IPHONE_CARRIER_CODES } from '../data/iphoneUnlockData';
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -57,11 +60,81 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
       );
     });
 
+    // Extraction Tools
+    DUMP_TOOLS_CATALOG.forEach((tool) => {
+      list.push({
+        id: tool.id,
+        name: tool.name,
+        desc: tool.desc,
+        ver: tool.category === 'jtag' ? 'JTAG / EMMC Tool' : 'Software / Dongle Tool',
+        link: tool.url,
+        categoryLabel: 'أداة سحب DUMP'
+      });
+      tool.items.forEach((it) => {
+        list.push({ ...it, categoryLabel: `DUMP: ${tool.name}` });
+      });
+    });
+
     // Solutions
     HMAX_DATA.solutions.youtube.forEach((it) => list.push({ ...it, categoryLabel: 'شروحات يوتيوب' }));
     HMAX_DATA.solutions.volte.forEach((it) => list.push({ ...it, categoryLabel: 'تفعيل VoLTE' }));
     HMAX_DATA.solutions.rasheed.forEach((it) => list.push({ ...it, categoryLabel: 'لمسات رشيد' }));
     HMAX_DATA.solutions.haitham.forEach((it) => list.push({ ...it, categoryLabel: 'شروحات هيثم' }));
+
+    // Tech Utils (Commands, Dial Codes, APN, TestPoints)
+    ADB_FASTBOOT_COMMANDS.forEach((cmd) => {
+      list.push({
+        id: cmd.id,
+        name: cmd.name,
+        desc: cmd.desc,
+        ver: cmd.cmd,
+        guide: cmd.cmd,
+        categoryLabel: `أوامر: ${cmd.category.toUpperCase()}`
+      });
+    });
+
+    SECRET_DIAL_CODES.forEach((cd) => {
+      list.push({
+        id: cd.id,
+        name: `${cd.brand}: ${cd.purpose}`,
+        desc: cd.notes || cd.purpose,
+        ver: cd.code,
+        guide: cd.code,
+        categoryLabel: `كود سري: ${cd.brand}`
+      });
+    });
+
+    APN_PROFILES.forEach((ap) => {
+      list.push({
+        id: ap.id,
+        name: `${ap.carrier} - ${ap.country}`,
+        desc: `APN: ${ap.apn} | MCC: ${ap.mcc || ''} MNC: ${ap.mnc || ''}`,
+        ver: ap.apn,
+        guide: ap.apn,
+        categoryLabel: 'نقاط الوصول APN'
+      });
+    });
+
+    TESTPOINT_GUIDES.forEach((tp) => {
+      list.push({
+        id: tp.id,
+        name: `تيست بوينت: ${tp.brand} ${tp.model}`,
+        desc: `${tp.instructions} - ${tp.tpPoint}`,
+        ver: `وضع ${tp.mode} - ${tp.chipset}`,
+        categoryLabel: 'نقاط التيست بوينت TP'
+      });
+    });
+
+    IPHONE_CARRIER_CODES.forEach((c) => {
+      list.push({
+        id: `carrier-${c.carrier}`,
+        name: `شفرة مشغل: ${c.carrier} (${c.country})`,
+        desc: `${c.notes || ''} - أكواد IMSI: ${c.codes.join(' - ')}`,
+        ver: c.codes.join(' | '),
+        guide: c.codes.join(' '),
+        categoryLabel: 'شفرات مشغلي الآيفون'
+      });
+    });
 
     return list;
   }, []);

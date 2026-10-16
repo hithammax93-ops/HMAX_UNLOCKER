@@ -1,25 +1,25 @@
 import React from 'react';
-import { Home, Database, Wrench, Lightbulb, Star } from 'lucide-react';
+import { Home, Database, Wrench, Lightbulb, Sparkles, Terminal } from 'lucide-react';
 
-export type NavTab = 'home' | 'dump' | 'solutions' | 'tools' | 'favorites';
+export type NavTab = 'home' | 'dump' | 'tech_utils' | 'tools' | 'solutions' | 'offers' | 'favorites';
 
 interface BottomNavProps {
   activeTab: NavTab;
   onTabChange: (tab: NavTab) => void;
-  favoritesCount: number;
+  favoritesCount?: number;
 }
 
-export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange, favoritesCount }) => {
+export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) => {
   const tabs = [
     { id: 'home' as NavTab, label: 'الرئيسية', icon: Home },
     { id: 'dump' as NavTab, label: 'DUMP', icon: Database },
-    { id: 'tools' as NavTab, label: 'الأدوات', icon: Wrench },
+    { id: 'tech_utils' as NavTab, label: 'أدوات الفني', icon: Terminal },
     { id: 'solutions' as NavTab, label: 'الحلول', icon: Lightbulb },
-    { id: 'favorites' as NavTab, label: 'المفضلة', icon: Star, badge: favoritesCount },
+    { id: 'offers' as NavTab, label: 'العروض', icon: Sparkles },
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0a0e1a]/95 backdrop-blur-xl border-t border-slate-800/80 pb-safe">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0a0e1a]/95 backdrop-blur-xl border-t border-slate-800/80 pb-safe sm:hidden">
       <div className="max-w-md mx-auto grid grid-cols-5 items-center h-16 px-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -47,13 +47,6 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange, fa
               >
                 {tab.label}
               </span>
-
-              {/* Favorites Badge */}
-              {tab.badge !== undefined && tab.badge > 0 && (
-                <span className="absolute top-1.5 right-1/2 translate-x-3 w-4 h-4 rounded-full bg-amber-500 text-black text-[9px] font-black flex items-center justify-center">
-                  {tab.badge}
-                </span>
-              )}
             </button>
           );
         })}
