@@ -1,0 +1,6 @@
+{
+  "name": "HMAX UNLOCKER — أندرويد",
+  "description": "تطبيق الأندرويد الشامل لأدوات وفلاشات السوفت وير، فك الشفرات، DUMP، وتخطي الحمايات",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
