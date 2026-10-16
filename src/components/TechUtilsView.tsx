@@ -52,11 +52,7 @@ import { WebUsbPortChecker } from './WebUsbPortChecker';
 import { GsmPricingCalculator } from './GsmPricingCalculator';
 import { Printer, Usb, DollarSign, AlertOctagon, Play } from 'lucide-react';
 
-interface TechUtilsViewProps {
-  onCopyToast: (msg: string) => void;
-}
-
-type TechTab =
+export type TechTab =
   | 'commands'
   | 'samsung_bin'
   | 'script_gen'
@@ -71,6 +67,11 @@ type TechTab =
   | 'apn'
   | 'testpoints'
   | 'tracker';
+
+export interface TechUtilsViewProps {
+  onCopyToast: (msg: string) => void;
+  initialTab?: TechTab;
+}
 
 interface RepairTicket {
   id: string;
@@ -97,8 +98,14 @@ const SAMSUNG_CSC_DATABASE = [
   { code: 'TUR', region: 'تركيا (Turkey)', network: 'مشهور لتعريب الأجهزة القديمة', volte: 'مدعوم' }
 ];
 
-export const TechUtilsView: React.FC<TechUtilsViewProps> = ({ onCopyToast }) => {
-  const [activeTab, setActiveTab] = useState<TechTab>('commands');
+export const TechUtilsView: React.FC<TechUtilsViewProps> = ({ onCopyToast, initialTab = 'commands' }) => {
+  const [activeTab, setActiveTab] = useState<TechTab>(initialTab);
+
+  useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
   const [cmdFilter, setCmdFilter] = useState<'all' | 'fastboot' | 'adb'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [copiedId, setCopiedId] = useState<string | null>(null);

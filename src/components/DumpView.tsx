@@ -6,23 +6,38 @@ import { DUMP_TOOLS_CATALOG, DumpToolInfo } from '../data/dumpTools';
 import { ItemCard } from './ItemCard';
 import { DumpModal } from './DumpModal';
 
-interface DumpViewProps {
+export interface DumpViewProps {
   onCopyToast: (msg: string) => void;
   isFav: (item: ItemData) => boolean;
   onToggleFav: (item: ItemData) => void;
+  initialBrand?: string | null;
 }
 
 type BrowseMode = 'brand' | 'tool';
 
-export const DumpView: React.FC<DumpViewProps> = ({ onCopyToast, isFav, onToggleFav }) => {
+export const DumpView: React.FC<DumpViewProps> = ({
+  onCopyToast,
+  isFav,
+  onToggleFav,
+  initialBrand = null,
+}) => {
   const [browseMode, setBrowseMode] = useState<BrowseMode>('brand');
-  const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
+  const [selectedBrand, setSelectedBrand] = useState<string | null>(initialBrand);
   const [selectedToolId, setSelectedToolId] = useState<string | null>(null);
   const [brandSearch, setBrandSearch] = useState('');
   const [fileSearch, setFileSearch] = useState('');
   const [tecnoSeries, setTecnoSeries] = useState<string>('all');
   const [inspectItem, setInspectItem] = useState<ItemData | null>(null);
   const [copiedPass, setCopiedPass] = useState(false);
+
+  React.useEffect(() => {
+    if (initialBrand !== undefined) {
+      setSelectedBrand(initialBrand);
+      if (initialBrand) {
+        setBrowseMode('brand');
+      }
+    }
+  }, [initialBrand]);
 
   // Filter Brands
   const brands = useMemo(() => {

@@ -3,20 +3,28 @@ import { Sparkles, Gift, Crown, Bot, Headset, FolderGit2, Wrench, Send, MessageC
 import { HMAX_DATA, ItemData } from '../data/hmaxData';
 import { ItemCard } from './ItemCard';
 
-interface OffersViewProps {
+export type OffersCategory = 'offers' | 'vip' | 'ai' | 'free' | 'gifts' | 'services' | 'halabtech';
+
+export interface OffersViewProps {
   onCopyToast: (msg: string) => void;
   isFav: (item: ItemData) => boolean;
   onToggleFav: (item: ItemData) => void;
+  initialCategory?: OffersCategory;
 }
-
-type OffersCategory = 'offers' | 'vip' | 'ai' | 'free' | 'gifts' | 'services' | 'halabtech';
 
 export const OffersView: React.FC<OffersViewProps> = ({
   onCopyToast,
   isFav,
   onToggleFav,
+  initialCategory = 'offers',
 }) => {
-  const [activeCat, setActiveCat] = useState<OffersCategory>('offers');
+  const [activeCat, setActiveCat] = useState<OffersCategory>(initialCategory);
+
+  React.useEffect(() => {
+    if (initialCategory) {
+      setActiveCat(initialCategory);
+    }
+  }, [initialCategory]);
 
   const categories = [
     { id: 'offers' as OffersCategory, label: 'عروض هيثم ماكس', icon: Sparkles, count: HMAX_DATA.offers_hitham.length },

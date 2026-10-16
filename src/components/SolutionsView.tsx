@@ -20,13 +20,7 @@ import {
 import { HMAX_DATA, ItemData } from '../data/hmaxData';
 import { ItemCard } from './ItemCard';
 
-interface SolutionsViewProps {
-  onCopyToast: (msg: string) => void;
-  isFav: (item: ItemData) => boolean;
-  onToggleFav: (item: ItemData) => void;
-}
-
-type SubSection =
+export type SubSection =
   | 'diagnostic'
   | 'youtube'
   | 'text_guides'
@@ -35,6 +29,13 @@ type SubSection =
   | 'rasheed'
   | 'haitham'
   | 'samsung_msg';
+
+export interface SolutionsViewProps {
+  onCopyToast: (msg: string) => void;
+  isFav: (item: ItemData) => boolean;
+  onToggleFav: (item: ItemData) => void;
+  initialSubSection?: SubSection;
+}
 
 interface DiagnosticCase {
   id: string;
@@ -163,10 +164,17 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({
   onCopyToast,
   isFav,
   onToggleFav,
+  initialSubSection = 'diagnostic',
 }) => {
-  const [activeSub, setActiveSub] = useState<SubSection>('diagnostic');
+  const [activeSub, setActiveSub] = useState<SubSection>(initialSubSection);
   const [selectedGuideId, setSelectedGuideId] = useState<string | null>(null);
   const [selectedCaseId, setSelectedCaseId] = useState<string>('dead_boot');
+
+  React.useEffect(() => {
+    if (initialSubSection) {
+      setActiveSub(initialSubSection);
+    }
+  }, [initialSubSection]);
 
   const subSections = [
     { id: 'diagnostic' as SubSection, label: '🔍 فاحص وحلول الأعطال', icon: Stethoscope, count: DIAGNOSTIC_CASES.length },

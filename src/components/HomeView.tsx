@@ -21,15 +21,24 @@ import {
 } from 'lucide-react';
 import { MASTER_PASS, HMAX_DATA } from '../data/hmaxData';
 
+export interface SectionItem {
+  id: string;
+  title: string;
+  count: string;
+  desc: string;
+  tab: string;
+  subTab?: string;
+  extra?: string;
+  feat?: boolean;
+}
+
 interface HomeViewProps {
-  onNavigateTab: (tab: any) => void;
-  onNavigateSection?: (section: string) => void;
+  onNavigateTab: (tab: any, subTab?: string, extra?: string) => void;
   onCopyToast: (msg: string) => void;
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({
   onNavigateTab,
-  onNavigateSection,
   onCopyToast,
 }) => {
   const [copiedPass, setCopiedPass] = React.useState(false);
@@ -41,27 +50,36 @@ export const HomeView: React.FC<HomeViewProps> = ({
     setTimeout(() => setCopiedPass(false), 2000);
   };
 
-  const sections = [
-    { id: 'tech_utils', title: '🛠️ أدوات ومختبر الفني', count: '14 أداة 🔥', desc: 'أوامر Fastboot & ADB، أكواد المهندس، ونقاط التيست بوينت وسجل الصيانة', tab: 'tech_utils', feat: true },
-    { id: 'samsung_bin', title: '🛡️ محلل حمايات سامسونج', count: 'Bit Check', desc: 'تفكيك كود الفلاشة وحساب رقم الحماية U/S وتفادي خطأ موت الهاتف', tab: 'tech_utils', feat: true },
-    { id: 'script_gen', title: '⚡ مولد سكريبتات التفليش', count: 'Auto Bat', desc: 'توليد ملفات تشغيل فاست بوت تلقائية لتفليش البارتشنات دون كتابة أوامر', tab: 'tech_utils', feat: true },
-    { id: 'flash_errors', title: '📖 موسوعة أخطاء التفليش', count: '20+ خطأ', desc: 'دليل وحلول أخطاء SP Flash Tool و Odin و QFIL و UnlockTool و Pandora', tab: 'tech_utils' },
-    { id: 'webusb', title: '🔌 فاحص منافذ USB والتعريفات', count: 'WebUSB', desc: 'فحص اتصال الهاتف وقراءة Vendor ID مباشرة وتحديد التعريف الناقص', tab: 'tech_utils' },
-    { id: 'pricing', title: '💰 حاسبة تسعير الخدمات', count: 'GSM Profit', desc: 'تقدير تكلفة السيرفرات وسعر الخدمة العادل للزبون وصافي الأرباح', tab: 'tech_utils' },
+  // 1. أقسام ومستودع السوفت وير الأساسية (10 أقسام رئيسية من البوت)
+  const coreBotSections: SectionItem[] = [
+    { id: 'tools', title: '🧰 قسم الأدوات والبرامج', count: `${HMAX_DATA.tools.length} أداة`, desc: 'أدوات السوفت وير الشهيرة: MaxTech VIP 2.0، Chimera، TSM Pro، و UnlockTool', tab: 'tools', subTab: 'tools', feat: true },
+    { id: 'drivers', title: '🔧 قسم التعاريف الرسمية', count: `${HMAX_DATA.drivers.length} تعريف`, desc: 'تعاريف الموبايل الرسمية وكابلات البوكسات وكوالكوم 9008 وميديا تيك', tab: 'tools', subTab: 'drivers' },
+    { id: 'unlocking', title: '🔓 فك الشفرات والشبكات', count: `${HMAX_DATA.unlocking.length} أدوات`, desc: 'فك شفرات الشبكات الدولية واليمنية (CDMA / GSM / LTE)', tab: 'tools', subTab: 'unlocking' },
     { id: 'dump', title: '🗄️ قسم DUMP الشامل', count: '576+ ملف', desc: 'فلاشات مسحوبة ISP و JTAG و Pandora لـ 27 ماركة و 141 موديل تكنو و 9 أنظمة LT', tab: 'dump', feat: true },
-    { id: 'iphone_carrier', title: '📱 شفرات الآيفون & IMSI', count: '17 شبكة', desc: 'أكواد AT&T, Verizon, Sprint والشرائح الإلكترونية وأسعار الآيكلود', tab: 'tech_utils' },
-    { id: 'lt_official', title: '📂 أنظمة هواتف LT الرسمية', count: '9 هواتف', desc: 'فلاشات كاملة مجانية LT M20, M30, M50S, M25, M40, M60, M70', tab: 'tech_utils' },
-    { id: 'tech_ranks', title: '🏆 رتب ومكافآت الفنيين', count: 'نقاط VIP', desc: 'سجل حضورك اليومي، اكسب نقاطاً مع كل أداة، واستبدلها باشتراكات حقيقية', tab: 'tech_utils' },
-    { id: 'calc_csc', title: '🔢 حاسبة السيريال & CSC', count: 'Luhn Check', desc: 'حساب الرقم الـ 15 القانوني للسيريال وقاعدة بيانات أكواد سامسونج', tab: 'tech_utils' },
-    { id: 'tools', title: '🧰 قسم الأدوات والبرامج', count: `${HMAX_DATA.tools.length} أداة`, desc: 'MaxTech VIP 2.0، Chimera، TSM Pro، و UnlockTool', tab: 'tools' },
-    { id: 'drivers', title: '🔧 قسم التعاريف الرسمية', count: `${HMAX_DATA.drivers.length} تعريف`, desc: 'تعاريف الموبايل وكابلات البوكسات وكوالكوم 9008', tab: 'tools' },
-    { id: 'unlocking', title: '🔓 فك الشفرات والشبكات', count: `${HMAX_DATA.unlocking.length} أدوات`, desc: 'شبكات دولية ويمنية (CDMA / GSM / LTE)', tab: 'tools' },
-    { id: 'solutions', title: '💡 حلول وثغرات مجربة', count: '60+ حل', desc: 'فاحص الأعطال، تخطي Exynos مجاني، تفعيل VoLTE، وثغرات MTK', tab: 'solutions' },
-    { id: 'iphone', title: '🍎 قسم IPHONE والجيلبريك', count: `${HMAX_DATA.iphone_tools.length + HMAX_DATA.iphone_pwn.length} عنصر`, desc: '3uTools، فلاشات قطع PWN DFU والجيلبريك', tab: 'tools' },
-    { id: 'firmware', title: '💾 مواقع الأنظمة الرسمية', count: `${HMAX_DATA.firmware_sites.length} موقع`, desc: 'رومات سامسونج، شاومي، أوبو، ريلمي الرسمية', tab: 'tools' },
-    { id: 'offers', title: '🔥 عروض هيثم ماكس', count: `${HMAX_DATA.offers_hitham.length} عرض`, desc: 'اشتراكات شات جي بي تي، كانفا، ويوتيوب بأسعار مخفضة', tab: 'offers' },
-    { id: 'vip', title: '💰 عروض VIP مدفوعة', count: `${HMAX_DATA.paid_offers.length} باقات`, desc: 'تفعيل بوكسات فوري، جمناي برو وسيرفرات صيانة', tab: 'offers' },
-    { id: 'halabtech', title: '📂 ملفات حلب تك المباشرة', count: `${HMAX_DATA.halabtech.length} عناصر`, desc: 'سحب أي فلاشة أو ملف مدفوع من سبورت حلب تك فوري', tab: 'offers' },
+    { id: 'iphone', title: '🍎 قسم IPHONE والجيلبريك', count: `${HMAX_DATA.iphone_tools.length + HMAX_DATA.iphone_pwn.length} عنصر`, desc: 'برامج 3uTools، فلاشات قطع PWN DFU وملفات الجيلبريك', tab: 'tools', subTab: 'iphone' },
+    { id: 'solutions', title: '💡 حلول وثغرات مجربة', count: '60+ حل', desc: 'فاحص الأعطال الذكي، تخطي Exynos مجاني، تفعيل VoLTE، وثغرات MTK', tab: 'solutions', subTab: 'diagnostic' },
+    { id: 'firmware', title: '💾 مواقع الأنظمة الرسمية', count: `${HMAX_DATA.firmware_sites.length} موقع`, desc: 'رومات سامسونج، شاومي، أوبو، ريلمي، وإنفينيكس الرسمية', tab: 'tools', subTab: 'firmware' },
+    { id: 'offers', title: '🔥 عروض هيثم ماكس', count: `${HMAX_DATA.offers_hitham.length} عرض`, desc: 'اشتراكات شات جي بي تي، كانفا برو، ويوتيوب بريميوم بأسعار مخفضة', tab: 'offers', subTab: 'offers' },
+    { id: 'vip', title: '💰 عروض VIP مدفوعة', count: `${HMAX_DATA.paid_offers.length} باقات`, desc: 'تفعيل بوكسات فوري، جمناي برو وسيرفرات صيانة دولية', tab: 'offers', subTab: 'vip' },
+    { id: 'halabtech', title: '📂 ملفات حلب تك المباشرة', count: `${HMAX_DATA.halabtech.length} عناصر`, desc: 'سحب أي فلاشة أو ملف مدفوع من سبورت حلب تك فوري بـ 3 دولار', tab: 'offers', subTab: 'halabtech' },
+  ];
+
+  // 2. أدوات ومختبر الفني التفاعلية (14 أداة ومساعد هندسي)
+  const techToolsSuite: SectionItem[] = [
+    { id: 'samsung_bin', title: '🛡️ محلل حمايات سامسونج', count: 'Bit Check 🔥', desc: 'تفكيك كود الفلاشة وحساب رقم الحماية U/S وتفادي خطأ موت الهاتف قبل التفليش', tab: 'tech_utils', subTab: 'samsung_bin', feat: true },
+    { id: 'script_gen', title: '⚡ مولد سكريبتات التفليش', count: 'Auto Bat', desc: 'توليد ملفات تشغيل فاست بوت تلقائية لتفليش البارتشنات دون كتابة أوامر يدوية', tab: 'tech_utils', subTab: 'script_gen', feat: true },
+    { id: 'flash_errors', title: '📖 موسوعة أخطاء التفليش', count: '20+ خطأ', desc: 'دليل وحلول أخطاء SP Flash Tool و Odin و QFIL و UnlockTool و Pandora', tab: 'tech_utils', subTab: 'flash_errors' },
+    { id: 'iphone_carrier', title: '📱 شفرات الآيفون & IMSI', count: '17 شبكة', desc: 'أكواد AT&T, Verizon, Sprint والشرائح الإلكترونية وأسعار فك الآيكلود الرسمي', tab: 'tech_utils', subTab: 'iphone' },
+    { id: 'lt_official', title: '📂 أنظمة هواتف LT الرسمية', count: '9 هواتف', desc: 'فلاشات كاملة مجانية LT M20, M30, M50S, M25, M40, M60, M70', tab: 'tech_utils', subTab: 'lt_phones' },
+    { id: 'webusb', title: '🔌 فاحص منافذ USB والتعريفات', count: 'WebUSB', desc: 'فحص اتصال الهاتف وقراءة Vendor ID مباشرة وتحديد التعريف الناقص بجهازك', tab: 'tech_utils', subTab: 'webusb' },
+    { id: 'pricing', title: '💰 حاسبة تسعير الخدمات', count: 'GSM Profit', desc: 'تقدير تكلفة السيرفرات وسعر الخدمة العادل للزبون وصافي الأرباح الهامشية', tab: 'tech_utils', subTab: 'pricing' },
+    { id: 'tech_ranks', title: '🏆 رتب ومكافآت الفنيين', count: 'نقاط VIP', desc: 'سجل حضورك اليومي، اكسب نقاطاً مع كل أداة، واستبدلها باشتراكات حقيقية', tab: 'tech_utils', subTab: 'ranks' },
+    { id: 'calc_csc', title: '🔢 حاسبة السيريال & CSC', count: 'Luhn Check', desc: 'حساب الرقم الـ 15 القانوني للسيريال وقاعدة بيانات أكواد سامسونج CSC', tab: 'tech_utils', subTab: 'calc' },
+    { id: 'commands', title: '💻 أوامر Fastboot & ADB', count: 'أوامر سريعة', desc: 'مكتبة أوامر فك البوتلودر، التفليش، مسح الـ FRP وإعادة التشغيل وضع BROM', tab: 'tech_utils', subTab: 'commands' },
+    { id: 'codes', title: '🔑 أكواد المهندس والدايلر', count: 'أكواد سرية', desc: 'أكواد سرية لاختبار الهواتف والشاشات وتفعيل الـ Diag Port وسامسونج', tab: 'tech_utils', subTab: 'codes' },
+    { id: 'apn', title: '📡 نقاط الوصول APN', count: 'تفعيل 4G/LTE', desc: 'إعدادات APN ليمن موبايل، يو YOU، سبأفون والشبكات الدولية', tab: 'tech_utils', subTab: 'apn' },
+    { id: 'testpoints', title: '⚡ نقاط التيست بوينت', count: 'EDL / BROM', desc: 'مخططات نقاط توصيل الهواتف لإدخال وضع 9008 و BROM لمعالجات MTK/QCOM', tab: 'tech_utils', subTab: 'testpoints' },
+    { id: 'tracker', title: '📋 سجل الصيانة وإيصالات الزبائن', count: 'طباعة إيصال', desc: 'إدارة أجهزة الصيانة بالمحل، طباعة إيصالات برقم وسيريال، ورسائل واتساب', tab: 'tech_utils', subTab: 'tracker' },
   ];
 
   return (
@@ -186,26 +204,24 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </div>
 
-      {/* Main Categories Section */}
-      <div className="space-y-2.5">
+      {/* Section 1: Core Software Sections */}
+      <div className="space-y-3 pt-1">
         <div className="flex items-center justify-between px-1">
           <h3 className="text-sm font-black text-slate-100 flex items-center gap-2">
-            <span className="w-2 h-4 rounded-full bg-[#00b4ff]" />
-            <span>جميع أقسام التطبيق</span>
+            <span className="w-2.5 h-4 rounded-full bg-[#00b4ff]" />
+            <span>🧰 أقسام مركز السوفت وير الشامل</span>
           </h3>
-          <span className="text-xs text-slate-400 font-mono">14 قسم</span>
+          <span className="text-xs text-[#00b4ff] font-mono font-bold bg-[#00b4ff]/10 px-2.5 py-0.5 rounded-full border border-[#00b4ff]/20">10 أقسام رئيسية</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-          {sections.map((sec) => (
+          {coreBotSections.map((sec) => (
             <button
               key={sec.id}
-              onClick={() => {
-                onNavigateTab(sec.tab);
-              }}
+              onClick={() => onNavigateTab(sec.tab, sec.subTab, sec.extra)}
               className={`p-4 rounded-2xl bg-slate-900/80 border text-right transition-all group flex flex-col justify-between h-28 hover:-translate-y-0.5 active:scale-[0.98] ${
                 sec.feat
-                  ? 'border-[#00b4ff]/40 shadow-[0_0_20px_rgba(0,180,255,0.1)]'
+                  ? 'border-[#00b4ff]/40 shadow-[0_0_20px_rgba(0,180,255,0.08)] bg-gradient-to-br from-slate-900 via-slate-900 to-[#00b4ff]/5'
                   : 'border-slate-800/80 hover:border-slate-700'
               }`}
             >
@@ -220,8 +236,49 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <p className="text-[11px] text-slate-400 group-hover:text-slate-300 line-clamp-1 mt-1">
                 {sec.desc}
               </p>
-              <div className="text-[10px] text-[#00b4ff] font-bold mt-auto flex items-center gap-1">
-                <span>تصفح المحتوى</span>
+              <div className="text-[10px] text-[#00b4ff] font-bold mt-auto flex items-center gap-1 group-hover:translate-x-[-3px] transition-transform">
+                <span>فتح القسم</span>
+                <span>←</span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Section 2: Interactive Technician Suite */}
+      <div className="space-y-3 pt-3">
+        <div className="flex items-center justify-between px-1">
+          <h3 className="text-sm font-black text-slate-100 flex items-center gap-2">
+            <span className="w-2.5 h-4 rounded-full bg-emerald-500" />
+            <span>🛠️ مختبر وأدوات الفني المتقدمة التفاعلية</span>
+          </h3>
+          <span className="text-xs text-emerald-400 font-mono font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">14 أداة تفاعلية</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+          {techToolsSuite.map((sec) => (
+            <button
+              key={sec.id}
+              onClick={() => onNavigateTab(sec.tab, sec.subTab, sec.extra)}
+              className={`p-4 rounded-2xl bg-slate-900/80 border text-right transition-all group flex flex-col justify-between h-28 hover:-translate-y-0.5 active:scale-[0.98] ${
+                sec.feat
+                  ? 'border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.08)] bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-500/5'
+                  : 'border-slate-800/80 hover:border-slate-700'
+              }`}
+            >
+              <div className="flex items-start justify-between w-full">
+                <h4 className="text-sm font-bold text-slate-100 group-hover:text-white leading-tight">
+                  {sec.title}
+                </h4>
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-slate-800 text-emerald-400 font-bold">
+                  {sec.count}
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-400 group-hover:text-slate-300 line-clamp-1 mt-1">
+                {sec.desc}
+              </p>
+              <div className="text-[10px] text-emerald-400 font-bold mt-auto flex items-center gap-1 group-hover:translate-x-[-3px] transition-transform">
+                <span>تشغيل الأداة</span>
                 <span>←</span>
               </div>
             </button>

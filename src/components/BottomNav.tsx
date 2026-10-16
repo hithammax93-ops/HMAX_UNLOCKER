@@ -13,14 +13,15 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
   const tabs = [
     { id: 'home' as NavTab, label: 'الرئيسية', icon: Home },
     { id: 'dump' as NavTab, label: 'DUMP', icon: Database },
-    { id: 'tech_utils' as NavTab, label: 'أدوات الفني', icon: Terminal },
+    { id: 'tools' as NavTab, label: 'البرامج', icon: Wrench },
+    { id: 'tech_utils' as NavTab, label: 'المختبر', icon: Terminal },
     { id: 'solutions' as NavTab, label: 'الحلول', icon: Lightbulb },
     { id: 'offers' as NavTab, label: 'العروض', icon: Sparkles },
   ];
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0a0e1a]/95 backdrop-blur-xl border-t border-slate-800/80 pb-safe sm:hidden">
-      <div className="max-w-md mx-auto grid grid-cols-5 items-center h-16 px-1">
+      <div className="max-w-md mx-auto grid grid-cols-6 items-center h-16 px-0.5">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;

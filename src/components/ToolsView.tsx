@@ -3,20 +3,28 @@ import { Wrench, Cpu, Unlock, Globe, Apple, Shield } from 'lucide-react';
 import { HMAX_DATA, ItemData } from '../data/hmaxData';
 import { ItemCard } from './ItemCard';
 
-interface ToolsViewProps {
+export type ToolsSubCategory = 'tools' | 'drivers' | 'unlocking' | 'firmware' | 'iphone';
+
+export interface ToolsViewProps {
   onCopyToast: (msg: string) => void;
   isFav: (item: ItemData) => boolean;
   onToggleFav: (item: ItemData) => void;
+  initialCategory?: ToolsSubCategory;
 }
-
-type ToolsSubCategory = 'tools' | 'drivers' | 'unlocking' | 'firmware' | 'iphone';
 
 export const ToolsView: React.FC<ToolsViewProps> = ({
   onCopyToast,
   isFav,
   onToggleFav,
+  initialCategory = 'tools',
 }) => {
-  const [activeCategory, setActiveCategory] = useState<ToolsSubCategory>('tools');
+  const [activeCategory, setActiveCategory] = useState<ToolsSubCategory>(initialCategory);
+
+  React.useEffect(() => {
+    if (initialCategory) {
+      setActiveCategory(initialCategory);
+    }
+  }, [initialCategory]);
 
   const categories = [
     { id: 'tools' as ToolsSubCategory, label: 'أدوات السوفت وير', icon: Wrench, count: HMAX_DATA.tools.length },

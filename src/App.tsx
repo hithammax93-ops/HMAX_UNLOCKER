@@ -3,17 +3,23 @@ import { TopBar } from './components/TopBar';
 import { BottomNav, NavTab } from './components/BottomNav';
 import { HomeView } from './components/HomeView';
 import { DumpView } from './components/DumpView';
-import { ToolsView } from './components/ToolsView';
-import { SolutionsView } from './components/SolutionsView';
-import { OffersView } from './components/OffersView';
+import { ToolsView, ToolsSubCategory } from './components/ToolsView';
+import { SolutionsView, SubSection } from './components/SolutionsView';
+import { OffersView, OffersCategory } from './components/OffersView';
 import { FavoritesView } from './components/FavoritesView';
-import { TechUtilsView } from './components/TechUtilsView';
+import { TechUtilsView, TechTab } from './components/TechUtilsView';
 import { SearchOverlay } from './components/SearchOverlay';
 import { useFavorites } from './hooks/useFavorites';
 import { ItemData } from './data/hmaxData';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<NavTab | 'offers'>('home');
+  const [techSubTab, setTechSubTab] = useState<TechTab>('commands');
+  const [toolsCategory, setToolsCategory] = useState<ToolsSubCategory>('tools');
+  const [offersCategory, setOffersCategory] = useState<OffersCategory>('offers');
+  const [solutionsSection, setSolutionsSection] = useState<SubSection>('diagnostic');
+  const [dumpBrand, setDumpBrand] = useState<string | null>(null);
+
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -33,12 +39,36 @@ export default function App() {
     }
   };
 
+  const handleNavigate = (
+    tab: NavTab | 'offers',
+    subSection?: string,
+    extra?: string
+  ) => {
+    setActiveTab(tab);
+    if (tab === 'tech_utils' && subSection) {
+      setTechSubTab(subSection as TechTab);
+    }
+    if (tab === 'tools' && subSection) {
+      setToolsCategory(subSection as ToolsSubCategory);
+    }
+    if (tab === 'offers' && subSection) {
+      setOffersCategory(subSection as OffersCategory);
+    }
+    if (tab === 'solutions' && subSection) {
+      setSolutionsSection(subSection as SubSection);
+    }
+    if (tab === 'dump') {
+      setDumpBrand(extra || null);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0e1a] text-slate-100 flex flex-col selection:bg-[#00b4ff]/30 selection:text-white pb-20 sm:pb-12">
       {/* Top Application Bar */}
       <TopBar
         activeTab={activeTab}
-        onSelectTab={(tab) => setActiveTab(tab)}
+        onSelectTab={(tab) => handleNavigate(tab)}
         onSearchClick={() => setIsSearchOpen(true)}
         onCopyToast={showToast}
         favoritesCount={favorites.length}
@@ -59,7 +89,7 @@ export default function App() {
           ].map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id as any)}
+              onClick={() => handleNavigate(item.id as any)}
               className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition ${
                 activeTab === item.id
                   ? 'bg-[#00b4ff] text-black shadow-[0_0_15px_rgba(0,180,255,0.3)]'
@@ -74,7 +104,7 @@ export default function App() {
         {/* View Switcher */}
         {activeTab === 'home' && (
           <HomeView
-            onNavigateTab={(tab) => setActiveTab(tab)}
+            onNavigateTab={handleNavigate}
             onCopyToast={showToast}
           />
         )}
@@ -84,11 +114,15 @@ export default function App() {
             onCopyToast={showToast}
             isFav={isFavorite}
             onToggleFav={toggleFavorite}
+            initialBrand={dumpBrand}
           />
         )}
 
         {activeTab === 'tech_utils' && (
-          <TechUtilsView onCopyToast={showToast} />
+          <TechUtilsView
+            onCopyToast={showToast}
+            initialTab={techSubTab}
+          />
         )}
 
         {activeTab === 'tools' && (
@@ -96,6 +130,7 @@ export default function App() {
             onCopyToast={showToast}
             isFav={isFavorite}
             onToggleFav={toggleFavorite}
+            initialCategory={toolsCategory}
           />
         )}
 
@@ -104,6 +139,7 @@ export default function App() {
             onCopyToast={showToast}
             isFav={isFavorite}
             onToggleFav={toggleFavorite}
+            initialSubSection={solutionsSection}
           />
         )}
 
@@ -112,6 +148,7 @@ export default function App() {
             onCopyToast={showToast}
             isFav={isFavorite}
             onToggleFav={toggleFavorite}
+            initialCategory={offersCategory}
           />
         )}
 
