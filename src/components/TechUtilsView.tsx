@@ -387,8 +387,8 @@ export const TechUtilsView: React.FC<TechUtilsViewProps> = ({ onCopyToast, initi
           </div>
         </div>
 
-        {/* Scrollable Sub-tabs Bar */}
-        <div className="flex items-center gap-2 mt-6 overflow-x-auto no-scrollbar pt-2 border-t border-slate-800/80">
+        {/* Responsive sub-tabs grid: all technician categories stay visible */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 mt-6 pt-4 border-t border-slate-800/80">
           {tabsConfig.map((t) => {
             const Icon = t.icon;
             const isActive = activeTab === t.id;
@@ -399,7 +399,7 @@ export const TechUtilsView: React.FC<TechUtilsViewProps> = ({ onCopyToast, initi
                   setActiveTab(t.id as TechTab);
                   setSearchQuery('');
                 }}
-                className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition whitespace-nowrap ${
+                className={`min-h-12 min-w-0 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 px-2 py-2 rounded-xl text-[11px] sm:text-xs text-center leading-tight font-bold transition ${
                   isActive
                     ? 'bg-[#00b4ff] text-black shadow-[0_0_20px_rgba(0,180,255,0.4)]'
                     : 'bg-slate-900/80 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800'
