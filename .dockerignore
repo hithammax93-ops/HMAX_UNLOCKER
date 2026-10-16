@@ -1,0 +1,48 @@
+# Repository metadata and development-only files
+.git
+.github
+.arena
+.vscode
+.idea
+tests
+
+# Python environments, caches, and build output
+**/__pycache__
+**/*.py[cod]
+.venv
+venv
+env
+.cache
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.tox
+.nox
+build
+dist
+**/*.egg-info
+.coverage
+.coverage.*
+coverage
+htmlcov
+
+# Local credentials and runtime state must not enter the build context.
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/*service-account*.json
+**/*serviceAccount*.json
+**/*firebase-adminsdk*.json
+**/firebase*.json
+**/credentials*.json
+**/*.log
+banned_users.txt
+banned_users.txt.tmp
+
+# Frontend dependencies and OS/editor artifacts
+node_modules
+**/.DS_Store
+**/Thumbs.db
+**/*~
+**/*.swp
