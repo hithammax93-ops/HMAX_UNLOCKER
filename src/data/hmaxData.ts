@@ -190,22 +190,22 @@ Fixed Bugs:
   ],
 
   dump_brands: [
-    { id: "allcall", name: "ALLCALL MAGIC", count: 6, color: "#f59e0b", icon: "🔥" },
+    { id: "allcall", name: "ALLCALL MAGIC", count: 2, color: "#f59e0b", icon: "🔥" },
     { id: "kxd", name: "KXD A07", count: 2, color: "#8b5cf6", icon: "📱" },
-    { id: "hmd", name: "HMD", count: 2, color: "#06b6d4", icon: "📱" },
+    { id: "hmd", name: "HMD", count: 1, color: "#06b6d4", icon: "📱" },
     { id: "benco", name: "BENCO", count: 2, color: "#22c55e", icon: "📱" },
     { id: "honor", name: "HONOR", count: 4, color: "#7c3aed", icon: "🔥" },
     { id: "hisorl", name: "HISORL", count: 1, color: "#f97316", icon: "📱" },
     { id: "blackview", name: "BLACKVIEW", count: 1, color: "#0891b2", icon: "📱" },
-    { id: "huawei", name: "HUAWEI & HONOR", count: 6, color: "#dc2626", icon: "🗄️" },
+    { id: "huawei", name: "HUAWEI & HONOR", count: 5, color: "#dc2626", icon: "🗄️" },
     { id: "nokia", name: "NOKIA", count: 7, color: "#2563eb", icon: "📱" },
     { id: "infinix", name: "INFINIX", count: 4, color: "#00c950", icon: "🔥" },
-    { id: "itel", name: "ITEL", count: 6, color: "#e7000b", icon: "📱" },
+    { id: "itel", name: "ITEL", count: 5, color: "#e7000b", icon: "📱" },
     { id: "mhorse", name: "M-HORSE", count: 7, color: "#6366f1", icon: "🔥" },
-    { id: "oppo", name: "OPPO", count: 6, color: "#1a9e47", icon: "📱" },
-    { id: "realme", name: "REALME", count: 11, color: "#ffcc00", icon: "📱" },
-    { id: "samsung", name: "SAMSUNG SCATTER", count: 6, color: "#1428a0", icon: "📁" },
-    { id: "xiaomi", name: "XIAOMI / REDMI / POCO", count: 8, color: "#ff6900", icon: "📱" },
+    { id: "oppo", name: "OPPO", count: 7, color: "#1a9e47", icon: "📱" },
+    { id: "realme", name: "REALME", count: 7, color: "#ffcc00", icon: "📱" },
+    { id: "samsung", name: "SAMSUNG SCATTER", count: 7, color: "#1428a0", icon: "📁" },
+    { id: "xiaomi", name: "XIAOMI / REDMI / POCO", count: 9, color: "#ff6900", icon: "📱" },
     { id: "tecno", name: "TECNO (141)", count: 141, color: "#2563eb", icon: "📱" },
     { id: "lt", name: "LT MOBILE (9)", count: 9, color: "#10b981", icon: "📱" },
     { id: "vivo", name: "VIVO", count: 15, color: "#00b4ff", icon: "📱" },
@@ -216,7 +216,7 @@ Fixed Bugs:
     { id: "motorola", name: "MOTOROLA", count: 2, color: "#0891b2", icon: "📱" },
     { id: "copy", name: "COPY", count: 4, color: "#6b7280", icon: "💾" },
     { id: "iphone_copy", name: "iPhone COPY", count: 1, color: "#000000", icon: "🍎" },
-    { id: "other", name: "OTHER", count: 6, color: "#6b7280", icon: "💿" }
+    { id: "other", name: "OTHER", count: 5, color: "#6b7280", icon: "💿" }
   ],
 
   dump_cards: {

@@ -397,29 +397,38 @@ _SUBSCRIPTION_CACHE = hmaxruntime.TTLCache(ttl_seconds=15, max_entries=10000)
 _BROADCAST_LOCK = threading.Lock()
 
 TSM_EDITION_DESCRIPTION = (
-    "✨ **TSM PRO EDITION 2026.10.01 | Update**\n"
+    "✨ **TSM PRO EDITION 2026.10.16 | Update**\n"
     "━━━━━━━━━━━━━━━━━━\n\n"
-    "🚀 **Added New Exynos Devices By [EUB+DL Mode]:**\n"
-    "• Remove FRP\n"
-    "• Repair Boot / Exit EUB\n\n"
-    "📱 **Added Supported:-**\n"
-    "• **Galaxy Tab S6 Lite (2020) [SM-P610 bit7]**\n"
-    "  > FW Version: `P610XXS7FYD1`\n\n"
-    "• **Galaxy Tab S6 Lite [SM-P615 bit7]**\n"
-    "  > FW Version: `P615XXSAFYD1`\n\n"
-    "• **Galaxy M31 [SM-M315F]**\n"
-    "  > FW Version: `M315FXXS4CWK5`\n\n"
-    "⚠️ **#Note:** Before FRP operation flash mentioned fw version\n\n"
-    "🔄 **Small Update - Next Models:-**\n"
-    "• **SM-A515F** - `A515FXXU8HWI1`\n"
-    "• **SM-A515U** - `A515USQSCFXA1`\n"
-    "• **SM-S515DL** - `S515DLUDSFFXA1`\n\n"
-    "⚠️ **#Note:** Before FRP operation flash mentioned fw version\n\n"
-    "🛠️ **Added Repair boot/Exit EUB for models which supported via EUB+DL**\n"
+    "**Added Nothing 4B Support [EDL Mode]**\n\n"
+    "**Added Unisoc ADL Mode [Unknown USB Mode] [ZTE Devices]**\n"
+    "• Remove FRP\n• Factory reset\n"
+    "**Tested ZTE models:**\n"
+    "• ZTE nubia Neo 2 5G [Z2352N]\n• ZTE Blade A56 [Z2473]\n"
+    "• ZTE nubia V80 Pro [Z2576]\n• ZTE Blade A36 [Z2472]\n"
+    "• ZTE nubia Neo 3 GT 5G [Z2465N]\n• ZTE Blade A55 [Z2450]\n"
+    "• ZTE Blade A75 4G [Z2359]\n"
+    "⚠️ **Note:** Method covers ZTE devices.\n\n"
+    "**Added New Bits Samsung 2026 [EDL Mode]**\n"
+    "• Remove FRP\n• Factory Reset\n• Read/Write Firmware/Dump\n\n"
+    "**Supported Samsung models:**\n"
+    "• Galaxy A23 5G [SM-A236B bitH]\n• Galaxy A23 5G [SM-A236E bitH]\n"
+    "• Galaxy A23 5G [SM-A236M bitH]\n• Galaxy F14 4G [SM-E145F bitD]\n"
+    "• Galaxy Z Flip4 [SM-F721N bit8]\n• Galaxy Z Fold3 5G [SM-F926N bitE]\n"
+    "• Galaxy Z Fold6 [SM-F956N bit4]\n• Galaxy S21 FE 5G [SM-G990B2 bitK]\n"
+    "• Galaxy Tab A9+ 5G [SM-X216C bitC]\n• Galaxy Tab A9+ 5G [SM-X216N bitD]\n\n"
+    "**Added More Support:**\n"
+    "• TCL 9185W\n• TCL T513Z\n• TCL 30+ [T676K]\n• ZTE NUBIA NEO 5G [8150N]\n"
+    "• ZTE BLADE A112 [P635A60]\n• REDMAGIC 11S Pro [NX809J]\n"
+    "• REDMAGIC Nova Gaming Table [NP03J]\n• honor play 20a\n"
+    "• lenovo Tab M11 [TB330XU]\n• OUKITEL C68\n\n"
+    "**Improved:** Fastboot Flasher for Moto/Xiaomi\n\n"
+    "**Fixed bugs:**\n"
+    "• Preloader Mode: Redmi A3 [blue], Poco C61 [blue], Poco C50 [blue]\n"
+    "• Crash with Remove FRP MTP OS16\n• Change CSC\n"
+    "• Select Moto Maps flashfile*/servicefile*\n\n"
     "━━━━━━━━━━━━━━━━━━\n"
-    "📥 للتحميل المباشر للإصدار الجديد 2026.10.01 اضغط أدناه:"
+    "📥 Download the TSM Pro Edition update using the button below:"
 )
-
 def _broadcast_worker_guard(worker, worker_args):
     try:
         worker(*worker_args)
@@ -978,7 +987,7 @@ DATA = {
         "qcdma":        ("📡 QCDMA TOOL",          "https://mega.nz/folder/fEQVBLab#1cPjBryW2_XPmqjxDoNZ0Q"),
         "cdma_yemen":   ("🇾🇪 CDMA YEMEN",         "https://www.mediafire.com/folder/kz5v059ycm44j/CDMA_YEMEN_TOOL"),
         "tsm_pro":      ("⭐ TSM Tool Pro",        "https://www.mediafire.com/file/vqh1h1uhwq9s2xo/TSM_SetupV2.4.1.7z/file"),
-        "tsm_edition": ("✨ TSM PRO EDITION 2026.10.01 | Update", "https://www.mediafire.com/file_premium/96ji9a20jlvdz36/TSM_Pro_Edition_Setup%255B2026.10.01%255D.7z/file"),
+        "tsm_edition": ("✨ TSM PRO EDITION 2026.10.16 | Update", "https://www.mediafire.com/file/vqiuhtmypiv7gzs/TSM+Pro+Edition+Setup[2026.10.16].7z/file"),
         "dft_pro": ("🛠️ DFT Pro v8.0.0", "https://www.mediafire.com/file/m4ssk83p5wr5mxa/DFTPRO_v8.0.0.exe/file"),
         "sigma_main":   ("💎 Sigma Plus",          "https://sigmakey.com/nfs/content/5802/file/sigmaplus-software-setup-v1.01.13.exe"),
         "sigma_kirin":  ("📁 ات Kirin",         "https://mega.nz/file/HpgniKDT#OjCTB2_Ki_TxcKs7mCBNgd08eDVa1jPwOsU1aci0KXU"),
@@ -3650,7 +3659,7 @@ def callback_inline(call):
         lang = hmaxi18n.get_language(user_id)
         translations = {
             "ar": {
-                "title": "💾 *DUMP - اختر العلامة التجارية*",
+                "title": "🗄️ *HMAX DUMP LIBRARY*\n📚 تصفح الملفات حسب الماركة\n━━━━━━━━━━━━\nاختر الماركة لعرض ملفاتها",
                 "allcall": "📱 ALLCALL MAGIC",
                 "hmd": "📱 HMD",
                 "honor": "🗄️ HUAWEI & HONOR",
@@ -3671,7 +3680,7 @@ def callback_inline(call):
                 "back": "🔙 رجوع",
             },
             "en": {
-                "title": "💾 *DUMP - Select Brand*",
+                "title": "🗄️ *HMAX DUMP LIBRARY*\n📚 Browse files by brand\n━━━━━━━━━━━━\nSelect a brand to view its files",
                 "allcall": "📱 ALLCALL MAGIC",
                 "hmd": "📱 HMD",
                 "honor": "🗄️ HUAWEI & HONOR",
@@ -3692,7 +3701,7 @@ def callback_inline(call):
                 "back": "🔙 Back",
             },
             "fr": {
-                "title": "💾 *DUMP - Sélectionner la marque*",
+                "title": "🗄️ *Bibliothèque HMAX DUMP*\n📚 Parcourez les fichiers par marque\n━━━━━━━━━━━━\nChoisissez une marque pour voir ses fichiers",
                 "allcall": "📱 ALLCALL MAGIC",
                 "hmd": "📱 HMD",
                 "honor": "🗄️ HUAWEI & HONOR",
