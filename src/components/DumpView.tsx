@@ -102,8 +102,8 @@ export const DumpView: React.FC<DumpViewProps> = ({
         onToggleFav={onToggleFav}
       />
 
-      {/* Top Dual View Switcher */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-900/60 border border-slate-800 rounded-2xl p-3 sm:p-4">
+      {/* Repository heading and responsive browse sections */}
+      <div className="space-y-3 bg-slate-900/60 border border-slate-800 rounded-2xl p-3 sm:p-4">
         <div>
           <div className="flex items-center gap-2">
             <span className="text-xl">🗄️</span>
@@ -116,33 +116,51 @@ export const DumpView: React.FC<DumpViewProps> = ({
           </p>
         </div>
 
-        {/* Mode Selector Segmented Controls */}
-        <div className="flex items-center gap-1 p-1 bg-slate-950 rounded-xl border border-slate-800 self-start sm:self-auto">
+        {/* Browse modes displayed as distinct repository sections */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5" aria-label="أقسام مستودع فلاشات DUMP">
           <button
+            type="button"
+            aria-pressed={browseMode === 'brand'}
             onClick={() => {
               setBrowseMode('brand');
               setSelectedToolId(null);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+            className={`min-h-16 flex items-center gap-3 p-3 rounded-xl text-right border transition ${
               browseMode === 'brand'
-                ? 'bg-[#00b4ff] text-black shadow-sm'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#00b4ff]/15 border-[#00b4ff] text-white shadow-sm'
+                : 'bg-slate-950/70 border-slate-800 text-slate-300 hover:border-slate-700 hover:bg-slate-900'
             }`}
           >
-            📱 حسب الماركات ({brands.length})
+            <span className={`w-10 h-10 shrink-0 rounded-xl flex items-center justify-center text-xl ${browseMode === 'brand' ? 'bg-[#00b4ff]/20' : 'bg-slate-800'}`}>📱</span>
+            <span className="min-w-0 flex-1">
+              <span className="flex items-center justify-between gap-2 text-sm font-black">
+                <span>حسب الماركات</span>
+                <span className="text-[11px] font-mono text-[#00b4ff]">{brands.length} ماركة</span>
+              </span>
+              <span className="block text-[11px] text-slate-400 mt-0.5">تصفح ملفات الدامب حسب الشركة المصنّعة</span>
+            </span>
           </button>
           <button
+            type="button"
+            aria-pressed={browseMode === 'tool'}
             onClick={() => {
               setBrowseMode('tool');
               setSelectedBrand(null);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+            className={`min-h-16 flex items-center gap-3 p-3 rounded-xl text-right border transition ${
               browseMode === 'tool'
-                ? 'bg-[#00b4ff] text-black shadow-sm'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#00b4ff]/15 border-[#00b4ff] text-white shadow-sm'
+                : 'bg-slate-950/70 border-slate-800 text-slate-300 hover:border-slate-700 hover:bg-slate-900'
             }`}
           >
-            🛠️ حسب أداة السحب ({DUMP_TOOLS_CATALOG.length})
+            <span className={`w-10 h-10 shrink-0 rounded-xl flex items-center justify-center ${browseMode === 'tool' ? 'bg-[#00b4ff]/20 text-[#00b4ff]' : 'bg-slate-800 text-slate-300'}`}><Wrench className="w-5 h-5" /></span>
+            <span className="min-w-0 flex-1">
+              <span className="flex items-center justify-between gap-2 text-sm font-black">
+                <span>حسب أداة السحب</span>
+                <span className="text-[11px] font-mono text-[#00b4ff]">{DUMP_TOOLS_CATALOG.length} أداة</span>
+              </span>
+              <span className="block text-[11px] text-slate-400 mt-0.5">اعثر على الملفات بحسب البوكس أو الأداة</span>
+            </span>
           </button>
         </div>
       </div>

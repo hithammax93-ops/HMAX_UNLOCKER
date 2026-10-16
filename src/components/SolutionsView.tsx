@@ -192,28 +192,32 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({
 
   return (
     <div className="space-y-4">
-      {/* Sub-navigation bar with horizontal scroll for mobile */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none no-scrollbar">
+      {/* Responsive category cards keep every solutions section visible */}
+      <section className="rounded-2xl bg-slate-900/40 border border-slate-800 p-3" aria-label="أقسام الحلول والثغرات">
+        <p className="text-xs font-bold text-slate-400 mb-2.5">اختر قسم الحلول والثغرات:</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
         {subSections.map((sec) => {
           const Icon = sec.icon;
           const isActive = activeSub === sec.id;
           return (
             <button
               key={sec.id}
+              type="button"
+              aria-pressed={isActive}
               onClick={() => {
                 setActiveSub(sec.id);
                 setSelectedGuideId(null);
               }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+              className={`min-h-14 min-w-0 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 px-2 py-2 rounded-xl text-[11px] sm:text-xs text-center leading-tight font-bold transition-all ${
                 isActive
                   ? 'bg-[#00b4ff] text-black shadow-[0_0_12px_rgba(0,180,255,0.3)]'
                   : 'bg-slate-900/80 text-slate-300 hover:bg-slate-800 border border-slate-800'
               }`}
             >
-              <Icon className="w-3.5 h-3.5" />
+              <Icon className="w-4 h-4 shrink-0" />
               <span>{sec.label}</span>
               <span
-                className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                className={`text-[10px] px-1.5 py-0.2 rounded-full shrink-0 ${
                   isActive ? 'bg-black/20 text-black' : 'bg-slate-800 text-slate-400'
                 }`}
               >
@@ -222,7 +226,8 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({
             </button>
           );
         })}
-      </div>
+        </div>
+      </section>
 
       {/* 0. INTERACTIVE DIAGNOSTIC TROUBLESHOOTER */}
       {activeSub === 'diagnostic' && (
